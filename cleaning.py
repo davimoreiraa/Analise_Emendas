@@ -5,7 +5,7 @@ def carregar_e_limpar():
     emendas = pd.read_csv('EmendasParlamentares.csv', encoding='latin1', sep=';')
 
     # excluindo colunas que não serão úteis:
-    emendas = emendas.drop(["Código da Emenda", "Tipo de Emenda", "Código Município IBGE", "Município", "Nome do Autor da Emenda", "Código do Autor da Emenda", "Número da emenda", "Código Ação", "Código Plano Orçamentário", "Valor Liquidado", "Valor Restos A Pagar Inscritos"], axis=1)
+    emendas = emendas.drop(["Código da Emenda", "Tipo de Emenda", "Código Município IBGE", "Município", "Nome do Autor da Emenda", "Código do Autor da Emenda", "Número da emenda", "Código Ação", "Código Plano Orçamentário", "Valor Liquidado", "Valor Restos A Pagar Inscritos", "Valor Restos A Pagar Cancelados", "Valor Restos A Pagar Pagos"], axis=1)
     # colunas "Código da Emenda", "Código Município IBGE" e "Município" possuiam muitos campos "Sem informação", foram excluídos porque não serão utilizados
 
     #limpando campos Sem informação
@@ -17,10 +17,11 @@ def carregar_e_limpar():
 
     # transformando colunas de texto em numero:
     def tranformar_em_int():
-        colunas_a_transformar = ["Valor Empenhado", "Valor Pago", "Valor Restos A Pagar Cancelados", "Valor Restos A Pagar Pagos"]
+        colunas_a_transformar = ["Valor Empenhado", "Valor Pago"]
         for coluna in colunas_a_transformar:
-            emendas[coluna] = emendas[coluna].astype(str).str.replace(',', '.', regex=False).astype(float)    
-
+            emendas[coluna] = emendas[coluna].astype(str).str.replace(',', '.', regex=False).astype(float)   
+            emendas[coluna] = emendas[coluna] / 1000000000 # transformando em bilhao p/ melhorar visualizaçao grafica
+ 
     tranformar_em_int()
 
     # definindo o campo Ano da Emenda como string para evitar que o codigo realize operaçoes com ele, prejudicando os graficos
