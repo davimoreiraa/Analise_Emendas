@@ -16,13 +16,14 @@ def carregar_e_limpar():
     emendas['UF'] = emendas['UF'].replace("Múltiplo", "Interestadual")
 
     # transformando colunas de texto em numero:
-    colunas_a_transformar = ["Valor Empenhado", "Valor Pago", "Valor Restos A Pagar Cancelados", "Valor Restos A Pagar Pagos"]
-
-    def tranformar_em_int(colunas):
-        for coluna in colunas:
+    def tranformar_em_int():
+        colunas_a_transformar = ["Valor Empenhado", "Valor Pago", "Valor Restos A Pagar Cancelados", "Valor Restos A Pagar Pagos"]
+        for coluna in colunas_a_transformar:
             emendas[coluna] = emendas[coluna].astype(str).str.replace(',', '.', regex=False).astype(float)    
 
-    tranformar_em_int(colunas_a_transformar)
+    tranformar_em_int()
 
     # definindo o campo Ano da Emenda como string para evitar que o codigo realize operaçoes com ele, prejudicando os graficos
     emendas["Ano da Emenda"] = emendas["Ano da Emenda"].astype(str)
+
+    return emendas
