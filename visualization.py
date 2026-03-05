@@ -74,19 +74,7 @@ def top_10_funcao(emendas):
     plt.show()
     plt.close()
 
-def empenhado_e_pago(emendas):
-    total_por_uf = emendas.groupby(emendas["UF"]).sum(numeric_only=True).round(2)
-    gap_empenhado_e_pago = total_por_uf[["Valor Empenhado", "Valor Pago"]]
-    # ordenando e filtrando somente os 10 maiores
-    gap_empenhado_e_pago = gap_empenhado_e_pago.sort_values(by="Valor Empenhado", ascending=False).head(10)
 
-    gap_empenhado_e_pago.plot(kind='barh', figsize=(15, 5), color=['#1f77b4', '#ff7f0e'])
-    plt.title('Diferença entre Valor Empenhado x Valor Pago por UF')
-    plt.xlabel('Bilhões')
-    plt.ylabel('')
-    plt.show()
-    plt.close()
-    
 def top_10_eficientes(emendas):
     # criando a coluna eficiencia, que mostra a porcentagem de valor empenhado que foi pago
     emendas.loc[:, "Eficiência"] = emendas["Valor Pago"] / emendas["Valor Empenhado"] * 100
@@ -96,7 +84,7 @@ def top_10_eficientes(emendas):
 
     estados_eficientes = estados_eficientes.head(10) # coletando somente os 10 estados mais eficientes
 
-    estados_eficientes.plot(kind='barh', figsize=(18, 7), color=["#3b55e4","#e03a35"])
+    estados_eficientes.plot(kind='barh', figsize=(18, 7), color=["#3b55e4","#2c7fb8"])
     plt.title('Estados mais Eficientes')
     plt.xlabel("Eficiência (%)")
     plt.ylabel('')
