@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 def carregar_e_limpar():
-    emendas = pd.read_csv('EmendasParlamentares.csv', encoding='latin1', sep=';')
+    emendas = pd.read_csv('data/EmendasParlamentares.csv', encoding='latin1', sep=';')
 
     # excluindo colunas que não serão úteis:
     emendas = emendas.drop(["Código da Emenda", "Tipo de Emenda", "Código Município IBGE", "Município", "Nome do Autor da Emenda", "Código do Autor da Emenda", "Número da emenda", "Código Ação", "Código Plano Orçamentário", "Valor Liquidado", "Valor Restos A Pagar Inscritos", "Valor Restos A Pagar Cancelados", "Valor Restos A Pagar Pagos"], axis=1)
