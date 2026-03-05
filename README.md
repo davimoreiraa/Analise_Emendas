@@ -5,7 +5,7 @@ Este projeto é resultado de um trabalho de coleta, tratamento, análise e visua
 
 ## Tecnologias utilizada
 
-**Carregamento, Análise e limpeza:** Pandas e NumPy
+**Carregamento, limpeza e análise:** Pandas e NumPy
 
 **Visualização gráfica:** Matplotlib e Seaborn
 
